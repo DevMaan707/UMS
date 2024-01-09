@@ -24,9 +24,9 @@
 
 ![screenshots/Screenshot_20240110_030004.jpg](https://github.com/DevMaan707/classroom_manager/blob/master/screenshots/Screenshot_20240110_030004.jpg)
 
-![screenshots/Screenshot_20240110_0300023.jpg](https://github.com/DevMaan707/classroom_manager/blob/master/screenshots/Screenshot_20240110_0300023.jpg)
+![screenshots/Screenshot_20240110_030023.jpg](https://github.com/DevMaan707/classroom_manager/blob/master/screenshots/Screenshot_20240110_030023.jpg)
 
-![screenshots/Screenshot_20240110_0300028.jpg](https://github.com/DevMaan707/classroom_manager/blob/master/screenshots/Screenshot_20240110_0300028.jpg)
+![screenshots/Screenshot_20240110_030028.jpg](https://github.com/DevMaan707/classroom_manager/blob/master/screenshots/Screenshot_20240110_030028.jpg)
 
 
 
