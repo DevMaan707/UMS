@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:classroom_app/controllers/db_crud.dart';
+import 'package:classroom_app/controllers/reserveDetails.dart';
 
 
 class Blocks extends StatefulWidget {
@@ -37,6 +38,8 @@ class _HomepageState extends State<Homepage> {
   String get blockname => widget.blockname;
 
   DB_crud sendData = DB_crud();
+  Reserve resData = Reserve();
+
   String dropdownValue = 'Class Room';
   String dropdownValue1 = '1';
   String dropdownValue2 = '1';
@@ -394,7 +397,9 @@ class _HomepageState extends State<Homepage> {
                                         //      color: const Color(0xff000000)
                                       ),
                                       child: ElevatedButton(
-                                        onPressed: () {},
+                                        onPressed: () async {
+                                            await resData.sendData(cls, dropdownValue2);
+                                        },
                                         style: ElevatedButton.styleFrom(
                                             backgroundColor: getContainerColor(),
                                             fixedSize: const Size(100, 20)),
