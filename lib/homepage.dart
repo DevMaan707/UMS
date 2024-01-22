@@ -3,10 +3,19 @@ import 'blocks.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
+import 'menu.dart';
+
 class Homepge extends StatelessWidget {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  final String token ;// Declare a final variable
+
+  // Constructor to receive the variable
+  Homepge({required this.token});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
+      drawer: Drawer(child:Menubar()),
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: Center(
@@ -22,11 +31,7 @@ class Homepge extends StatelessWidget {
             ),
           ),
         ),
-        leading: IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.menu),
-          color: Colors.black,
-        ),
+
         actions: <Widget>[
           IconButton(
             onPressed: () {},
@@ -71,7 +76,7 @@ class Home extends StatelessWidget {
                           fontSize: 20,
                           color: Colors.white,
                         ),),
-                        Text('Aymaan',
+                        Text('<USER>',
 
                           style: TextStyle(
                             fontFamily: 'Gotham',
@@ -87,6 +92,41 @@ class Home extends StatelessWidget {
                         width: 100,
                         height: 100)
                   ],
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left:10.0,right: 10,top:20),
+            child:  GestureDetector(
+              onTap: (){
+                Get.to(const Blocks(blockname: "All"));
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                  color: const Color(0xff6c117b),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.only(top:20.0,left:40,bottom: 20,right: 20),
+                  child: Row(
+                    children: [
+                      const Text('All Blocks',
+                        style: TextStyle(
+                          fontFamily: 'Gotham',
+                          fontSize: 20,
+                          color: Colors.white,
+                        ),),
+                      const SizedBox(
+                          width:40
+                      ),
+                      SizedBox(
+                        width:100,
+                        height:100,
+                        child:Image.asset("assets/images/all.png"),
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),

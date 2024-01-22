@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 
 class Reserve{
   Future sendData(String Roomno, String hours)async{
-    const url ='http://192.168.55.234:8080/reserve';
+    const url ='http://65.0.5.92:8080/reserve';
     //print(block);
     int hour = int.parse(hours);
 

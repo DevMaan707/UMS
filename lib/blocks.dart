@@ -3,10 +3,9 @@ import 'package:get/get.dart';
 import 'package:classroom_app/controllers/db_crud.dart';
 import 'package:classroom_app/controllers/reserveDetails.dart';
 
-
 class Blocks extends StatefulWidget {
   final String blockname;
-   const Blocks({Key? key, required this.blockname}) : super(key: key);
+  const Blocks({Key? key, required this.blockname}) : super(key: key);
 
   @override
   State<Blocks> createState() => _BlocksState(blockname: blockname);
@@ -20,7 +19,7 @@ class _BlocksState extends State<Blocks> {
     double baseWidth = 360;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
-    return  Scaffold(
+    return Scaffold(
       body: Homepage(blockname: blockname),
     );
   }
@@ -36,33 +35,40 @@ class Homepage extends StatefulWidget {
 
 class _HomepageState extends State<Homepage> {
   String get blockname => widget.blockname;
+  Map<String, String> day = {
+    "Monday": "1",
+    "Tuesday": "2",
+    "Wednesday": "3",
+    "Thursday": "4",
+    "Friday": "5",
+    "Saturday": "6",
+  };
 
   DB_crud sendData = DB_crud();
   Reserve resData = Reserve();
 
   String dropdownValue = 'Class Room';
-  String dropdownValue1 = '1';
+  String dropdownValue1 = "Monday";
   String dropdownValue2 = '1';
+  String dropdownValue3 = '1';
 
   List<String> serverData = [];
 
   Color getContainerColor() {
-
     if (blockname == 'A') {
       return const Color(0xff3e5bb2);
     } else if (blockname == 'B') {
       return const Color(0xffbb034b);
-    }else if (blockname == 'C') {
+    } else if (blockname == 'C') {
       return const Color(0xfff25044);
-    }else if (blockname == 'D') {
+    } else if (blockname == 'D') {
       return const Color(0xfff57a30);
-    }else if (blockname == 'E') {
+    } else if (blockname == 'E') {
       return const Color(0xff2fbad1);
-    }else if (blockname == 'H') {
+    } else if (blockname == 'H') {
       return const Color(0xffe93c4a);
-    }
-    else {
-      return Colors.grey;
+    } else {
+      return const Color(0xff6c117b);
     }
   }
 
@@ -77,11 +83,13 @@ class _HomepageState extends State<Homepage> {
           Container(
             width: MediaQuery.of(context).size.width,
             height: 250,
-            decoration:  BoxDecoration(
+            decoration: BoxDecoration(
               color: getContainerColor(),
               borderRadius: const BorderRadius.only(
-                bottomLeft: Radius.circular(20.0),  // Adjust the radius as needed
-                bottomRight: Radius.circular(20.0), // Adjust the radius as needed
+                bottomLeft:
+                    Radius.circular(20.0), // Adjust the radius as needed
+                bottomRight:
+                    Radius.circular(20.0), // Adjust the radius as needed
               ),
             ),
             child: Padding(
@@ -97,9 +105,12 @@ class _HomepageState extends State<Homepage> {
                     icon: const Icon(Icons.arrow_back_rounded),
                     color: Colors.white,
                   ),
-                   Padding(
-                    padding: const EdgeInsets.only(left:25.0,top: 20,),
-                    child:  Text(
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: 25.0,
+                      top: 20,
+                    ),
+                    child: Text(
                       blockname,
                       style: const TextStyle(
                         fontFamily: 'Gotham-light',
@@ -109,11 +120,11 @@ class _HomepageState extends State<Homepage> {
                       ),
                     ),
                   ),
-                  const Padding(
-                    padding:  EdgeInsets.only(left:25.0),
-                    child:  Text(
-                      "Block",
-                      style: TextStyle(
+                  Padding(
+                    padding: const EdgeInsets.only(left: 25.0),
+                    child: Text(
+                      (blockname == "All") ? "Blocks" : "Block",
+                      style: const TextStyle(
                         fontFamily: 'Gotham',
                         fontSize: 35,
                         fontWeight: FontWeight.w600,
@@ -207,45 +218,48 @@ class _HomepageState extends State<Homepage> {
                         height: 20,
                       ),
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           const Padding(
                             padding: EdgeInsets.only(
                               left: 20,
                               top: 10,
                             ),
-                            child: Text("When do you want it     "),
+                            child: Text("When do you want it"),
                           ),
-                          const SizedBox(
-                            width: 20,
-                          ),
-                          Container(
-                            width: 100,
-                            height: 30,
-                            decoration: BoxDecoration(
-                                color: const Color(0xffEBEDFE),
-                                borderRadius: BorderRadius.circular(20)),
-                            child: Center(
-                              child: DropdownButton<String>(
-                                value: dropdownValue1,
-                                items: <String>[
-                                  '1',
-                                  '2',
-                                  '3',
-                                  '4',
-                                  '5',
-                                  '6',
-                                ].map<DropdownMenuItem<String>>((String value) {
-                                  return DropdownMenuItem(
-                                      value: value, child: Text(value));
-                                }).toList(),
-                                onChanged: (String? newValue) {
-                                  setState(() {
-                                    dropdownValue1 = newValue!;
-                                  });
-                                },
+                          Spacer(),
+                          Padding(
+                            padding: const EdgeInsets.only(right: 25.0),
+                            child: Container(
+                              width: 130,
+                              height: 30,
+                              decoration: BoxDecoration(
+                                  color: const Color(0xffEBEDFE),
+                                  borderRadius: BorderRadius.circular(20)),
+                              child: Center(
+                                child: DropdownButton<String>(
+                                  value: dropdownValue1,
+                                  items: <String>[
+                                    "Monday",
+                                    "Tuesday",
+                                    "Wednesday",
+                                    "Thursday",
+                                    "Friday",
+                                    "Saturday",
+                                  ].map<DropdownMenuItem<String>>(
+                                      (String value) {
+                                    return DropdownMenuItem(
+                                        value: value, child: Text(value));
+                                  }).toList(),
+                                  onChanged: (String? newValue) {
+                                    setState(() {
+                                      dropdownValue1 = newValue!;
+                                    });
+                                  },
+                                ),
                               ),
                             ),
-                          )
+                          ),
                         ],
                       ),
                       const SizedBox(
@@ -258,11 +272,9 @@ class _HomepageState extends State<Homepage> {
                               left: 20,
                               top: 10,
                             ),
-                            child: Text("For which hour              "),
+                            child: Text("For which hour"),
                           ),
-                          const SizedBox(
-                            width: 20,
-                          ),
+                          const Spacer(),
                           Container(
                             width: 100,
                             height: 30,
@@ -291,7 +303,90 @@ class _HomepageState extends State<Homepage> {
                                 },
                               ),
                             ),
-                          )
+                          ),
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(left: 10, right: 20.0),
+                            child: GestureDetector(
+                              onTap: () {
+                                showModalBottomSheet(
+                                    backgroundColor: Colors.white,
+                                    context: context,
+                                    builder: (_) {
+                                      return Padding(
+                                        padding: const EdgeInsets.all(30.0),
+                                        child: Container(
+                                          height: 100,
+                                          child: Column(
+                                            children: [
+                                              Row(
+                                                children: [
+                                                  const Text("How many hours?"),
+                                                  const Spacer(),
+                                                  Container(
+                                                    width: 100,
+                                                    height: 30,
+                                                    decoration: BoxDecoration(
+                                                        color: const Color(
+                                                            0xffEBEDFE),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(20)),
+                                                    child: Center(
+                                                      child: DropdownButton<
+                                                          String>(
+                                                        value: dropdownValue3,
+                                                        items: <String>[
+                                                          '1',
+                                                          '2',
+                                                          '3',
+                                                        ].map<
+                                                            DropdownMenuItem<
+                                                                String>>((String
+                                                            value) {
+                                                          return DropdownMenuItem(
+                                                              value: value,
+                                                              child:
+                                                                  Text(value));
+                                                        }).toList(),
+                                                        onChanged:
+                                                            (String? newValue) {
+                                                          setState(() {
+                                                            dropdownValue3 = newValue!;
+                                                          });
+                                                        },
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    width: 20,
+                                                  ),
+                                                ],
+                                              ),
+                                              const Spacer(),
+                                              OutlinedButton(
+                                                  onPressed: () {},
+                                                  style: OutlinedButton.styleFrom(
+                                                    backgroundColor: getContainerColor(),
+
+                                                  ),
+                                                  child: const Text("Ok",style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Colors.white
+                                                  ),)),
+                                            ],
+                                          ),
+                                        ),
+                                      );
+                                    });
+                              },
+                              child: SizedBox(
+                                  width: 25,
+                                  height: 25,
+                                  child:
+                                      Image.asset('assets/images/filter.png')),
+                            ),
+                          ),
                         ],
                       ),
                     ],
@@ -299,22 +394,21 @@ class _HomepageState extends State<Homepage> {
                 ),
                 Center(
                   child: Container(
-                      // frame1njo (1:12)
-
                       padding: const EdgeInsets.fromLTRB(0, 20, 0, 15),
                       child: OutlinedButton(
                         style: OutlinedButton.styleFrom(
-                            fixedSize: const Size(100, 50),
-                            padding: const EdgeInsets.all(10),
-                            shadowColor: Colors.deepPurpleAccent,
-                            side: const BorderSide(
-                                color: Colors.deepPurpleAccent)),
+                          fixedSize: const Size(100, 50),
+                          backgroundColor: getContainerColor(),
+                          padding: const EdgeInsets.all(10),
+                          //shadowColor: Colors.deepPurpleAccent,
+                        ),
                         onPressed: () async {
-                          var data = await sendData.availableClassrooms(blockname,
-                              dropdownValue, dropdownValue1, dropdownValue2);
+                          String dayKey = day[dropdownValue1].toString();
+                          var data = await sendData.availableClassrooms(
+                              blockname, dropdownValue, dayKey, dropdownValue2,dropdownValue3);
                           setState(() {
                             serverData = [];
-                            for (int i = 0; i < data['number']; i++) {
+                            for (int i = 0; i <data['number']; i++) {
                               serverData.add(data['classroom'][i]);
                             }
                           });
@@ -324,6 +418,7 @@ class _HomepageState extends State<Homepage> {
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 15,
+                            color: Colors.white,
                           ),
                         ),
                       )),
@@ -343,9 +438,9 @@ class _HomepageState extends State<Homepage> {
                         width: MediaQuery.of(context).size.width - 40,
                         height: 120 * fem,
                         decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(20 * fem),
-                          //border: Border.all(color: const Color(0xff000000)),
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(20 * fem),
+                            //border: Border.all(color: const Color(0xff000000)),
                             boxShadow: [
                               BoxShadow(
                                 color: Colors.grey.shade300,
@@ -359,8 +454,7 @@ class _HomepageState extends State<Homepage> {
                                 blurRadius: 15,
                                 spreadRadius: 1,
                               )
-                            ]
-                        ),
+                            ]),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -398,10 +492,12 @@ class _HomepageState extends State<Homepage> {
                                       ),
                                       child: ElevatedButton(
                                         onPressed: () async {
-                                            await resData.sendData(cls, dropdownValue2);
+                                          await resData.sendData(
+                                              cls, dropdownValue2);
                                         },
                                         style: ElevatedButton.styleFrom(
-                                            backgroundColor: getContainerColor(),
+                                            backgroundColor:
+                                                getContainerColor(),
                                             fixedSize: const Size(100, 20)),
                                         child: const Center(
                                             child: Text(
