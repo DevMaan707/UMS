@@ -1,16 +1,32 @@
-# classroom_app
+# Classroom App
 
-A new Flutter project.
+# Here are few screenshots
 
-## Getting Started
+![screenshots/Screenshot_20240110_025920.jpg](https://github.com/DevMaan707/classroom_manager/blob/master/screenshots/Screenshot_20240110_025920.jpg)
 
-This project is a starting point for a Flutter application.
+![screenshots/Screenshot_20240110_025926.jpg](https://github.com/DevMaan707/classroom_manager/blob/master/screenshots/Screenshot_20240110_025926.jpg)
 
-A few resources to get you started if this is your first Flutter project:
+![screenshots/Screenshot_20240110_025930.jpg](https://github.com/DevMaan707/classroom_manager/blob/master/screenshots/Screenshot_20240110_025930.jpg)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+![screenshots/Screenshot_20240110_025936.jpg](https://github.com/DevMaan707/classroom_manager/blob/master/screenshots/Screenshot_20240110_025936.jpg)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![screenshots/Screenshot_20240110_025939.jpg](https://github.com/DevMaan707/classroom_manager/blob/master/screenshots/Screenshot_20240110_025939.jpg)
+
+![screenshots/Screenshot_20240110_025944.jpg](https://github.com/DevMaan707/classroom_manager/blob/master/screenshots/Screenshot_20240110_025944.jpg)
+
+![screenshots/Screenshot_20240110_025948.jpg](https://github.com/DevMaan707/classroom_manager/blob/master/screenshots/Screenshot_20240110_025948.jpg)
+
+![screenshots/Screenshot_20240110_025952.jpg](https://github.com/DevMaan707/classroom_manager/blob/master/screenshots/Screenshot_20240110_025952.jpg)
+
+![screenshots/Screenshot_20240110_025956.jpg](https://github.com/DevMaan707/classroom_manager/blob/master/screenshots/Screenshot_20240110_025956.jpg)
+
+![screenshots/Screenshot_20240110_025959.jpg](https://github.com/DevMaan707/classroom_manager/blob/master/screenshots/Screenshot_20240110_025959.jpg)
+
+![screenshots/Screenshot_20240110_030004.jpg](https://github.com/DevMaan707/classroom_manager/blob/master/screenshots/Screenshot_20240110_030004.jpg)
+
+![screenshots/Screenshot_20240110_030023.jpg](https://github.com/DevMaan707/classroom_manager/blob/master/screenshots/Screenshot_20240110_030023.jpg)
+
+![screenshots/Screenshot_20240110_030028.jpg](https://github.com/DevMaan707/classroom_manager/blob/master/screenshots/Screenshot_20240110_030028.jpg)
+
+
+
