@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 
 class DB_crud{
   Future availableClassrooms(String block ,String classroomType , String number , String hours,String num_hours)async{
-    const url ='http://65.0.5.92:8080/room-details';
+    const url ='http://65.0.5.92:8082/room-details';
     print(block);
     int hour = int.parse(hours);
     int day = int.parse(number);

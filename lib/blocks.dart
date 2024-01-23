@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:classroom_app/controllers/db_crud.dart';
 import 'package:classroom_app/controllers/reserveDetails.dart';
+import 'package:lottie/lottie.dart';
 
 class Blocks extends StatefulWidget {
   final String blockname;
@@ -34,7 +35,9 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
+  var reserve= "Reserve";
   String get blockname => widget.blockname;
+
   Map<String, String> day = {
     "Monday": "1",
     "Tuesday": "2",
@@ -74,6 +77,7 @@ class _HomepageState extends State<Homepage> {
 
   @override
   Widget build(BuildContext context) {
+    List<String> reserveStatus = List.filled(serverData.length, "Reserve");
     double baseWidth = 360;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
@@ -352,13 +356,14 @@ class _HomepageState extends State<Homepage> {
                                                         onChanged:
                                                             (String? newValue) {
                                                           setState(() {
-                                                            dropdownValue3 = newValue!;
+                                                            dropdownValue3 =
+                                                                newValue!;
                                                           });
                                                         },
                                                       ),
                                                     ),
                                                   ),
-                                                  SizedBox(
+                                                 const SizedBox(
                                                     width: 20,
                                                   ),
                                                 ],
@@ -366,14 +371,18 @@ class _HomepageState extends State<Homepage> {
                                               const Spacer(),
                                               OutlinedButton(
                                                   onPressed: () {},
-                                                  style: OutlinedButton.styleFrom(
-                                                    backgroundColor: getContainerColor(),
-
+                                                  style:
+                                                      OutlinedButton.styleFrom(
+                                                    backgroundColor:
+                                                        getContainerColor(),
                                                   ),
-                                                  child: const Text("Ok",style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    color: Colors.white
-                                                  ),)),
+                                                  child: const Text(
+                                                    "Ok",
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        color: Colors.white),
+                                                  )),
                                             ],
                                           ),
                                         ),
@@ -405,10 +414,14 @@ class _HomepageState extends State<Homepage> {
                         onPressed: () async {
                           String dayKey = day[dropdownValue1].toString();
                           var data = await sendData.availableClassrooms(
-                              blockname, dropdownValue, dayKey, dropdownValue2,dropdownValue3);
+                              blockname,
+                              dropdownValue,
+                              dayKey,
+                              dropdownValue2,
+                              dropdownValue3);
                           setState(() {
                             serverData = [];
-                            for (int i = 0; i <data['number']; i++) {
+                            for (int i = 0; i < data['number']; i++) {
                               serverData.add(data['classroom'][i]);
                             }
                           });
@@ -424,98 +437,127 @@ class _HomepageState extends State<Homepage> {
                       )),
                 ),
                 Container(
-                  child: Column(
-                    children: serverData.map((cls) {
-                      return Container(
-                        margin: const EdgeInsets.only(
-                          top: 10,
-                          bottom: 10,
-                        ),
-                        padding: const EdgeInsets.only(
-                          top: 20,
-                          left: 20,
-                        ),
-                        width: MediaQuery.of(context).size.width - 40,
-                        height: 120 * fem,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(20 * fem),
-                            //border: Border.all(color: const Color(0xff000000)),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.shade300,
-                                offset: const Offset(0.5, 0.5),
-                                blurRadius: 15,
-                                spreadRadius: 1,
-                              ),
-                              BoxShadow(
-                                color: Colors.grey.shade300,
-                                offset: const Offset(-0.5, -0.5),
-                                blurRadius: 15,
-                                spreadRadius: 1,
-                              )
-                            ]),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Text(
-                              cls,
-                              style: const TextStyle(
-                                fontFamily: 'Gotham-light',
-                                fontSize: 25,
-                                fontWeight: FontWeight.w900,
-                                color: Colors.black,
-                              ),
+                  child: (serverData.isEmpty)
+                      ? Align(
+                          alignment: Alignment.center,
+                          child: Container(
+                            child: Column(
+                              children: [
+                                SizedBox(width: 100, height: 100,child:Lottie.asset('assets/notFound.json') ,),
+                                const Text("No Classes found ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15),),
+                              ],
                             ),
-                            const SizedBox(
-                              height: 5,
-                            ),
-                            Container(
-                              child: Row(
+                          ))
+                      : Column(
+                          children: serverData.asMap().entries.map((entry){
+                            int index = entry.key;
+                            String cls = entry.value;
+                            return Container(
+                              margin: const EdgeInsets.only(
+                                top: 10,
+                                bottom: 10,
+                              ),
+                              padding: const EdgeInsets.only(
+                                top: 20,
+                                left: 20,
+                              ),
+                              width: MediaQuery.of(context).size.width - 40,
+                              height: 120 * fem,
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(20 * fem),
+                                  //border: Border.all(color: const Color(0xff000000)),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.shade300,
+                                      offset: const Offset(0.5, 0.5),
+                                      blurRadius: 15,
+                                      spreadRadius: 1,
+                                    ),
+                                    BoxShadow(
+                                      color: Colors.grey.shade300,
+                                      offset: const Offset(-0.5, -0.5),
+                                      blurRadius: 15,
+                                      spreadRadius: 1,
+                                    )
+                                  ]),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  const Text(
-                                    "<classroomtype>",
-                                    style: TextStyle(
+                                  Text(
+                                    cls,
+                                    style: const TextStyle(
+                                      fontFamily: 'Gotham-light',
+                                      fontSize: 25,
+                                      fontWeight: FontWeight.w900,
                                       color: Colors.black,
                                     ),
                                   ),
                                   const SizedBox(
-                                    width: 105,
+                                    height: 5,
                                   ),
                                   Container(
-                                      decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(8 * fem),
-                                        //  border: Border.all(
-                                        //      color: const Color(0xff000000)
-                                      ),
-                                      child: ElevatedButton(
-                                        onPressed: () async {
-                                          await resData.sendData(
-                                              cls, dropdownValue2);
-                                        },
-                                        style: ElevatedButton.styleFrom(
-                                            backgroundColor:
-                                                getContainerColor(),
-                                            fixedSize: const Size(100, 20)),
-                                        child: const Center(
-                                            child: Text(
-                                          'Reserve',
+                                    child: Row(
+                                      children: [
+                                        const Text(
+                                          "<classroomtype>",
                                           style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.white,
+                                            color: Colors.black,
                                           ),
-                                        )),
-                                      ))
+                                        ),
+                                        const SizedBox(
+                                          width: 105,
+                                        ),
+                                        Container(
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(
+                                                      8 * fem),
+                                              //  border: Border.all(
+                                              //      color: const Color(0xff000000)
+                                            ),
+                                            child: ElevatedButton(
+                                              onPressed: () async {
+
+                                                var check = await resData.sendData(
+                                                    cls, dropdownValue2);
+                                                if (check==true){
+                                                  setState(() {
+                                                    reserveStatus[index]="Reserved";
+                                                  });
+                                                }  else{
+                                                  ScaffoldMessenger.of(context).showSnackBar(
+                                                    const SnackBar(
+                                                      content: Text('Failed to Reserve'),
+                                                      backgroundColor: Colors.red,
+                                                    ),
+                                                  );
+                                                }
+
+                                              },
+                                              style: ElevatedButton.styleFrom(
+                                                  backgroundColor:
+                                                      getContainerColor(),
+                                                  fixedSize:
+                                                      const Size(100, 20)),
+                                              child: Center(
+                                                  child: Text(
+                                                reserveStatus[index],
+                                                style: const TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.white,
+                                                ),
+                                              )),
+                                            ))
+                                      ],
+                                    ),
+                                  )
                                 ],
                               ),
-                            )
-                          ],
+                            );
+                          }).toList(),
                         ),
-                      );
-                    }).toList(),
-                  ),
                 )
               ],
             ),

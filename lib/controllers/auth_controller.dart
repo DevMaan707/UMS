@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 
 class Auth {
   Future authenticaton(String uname, String pass) async {
-    const _url = 'http://65.0.5.92:8080/login';
+    const _url = 'http://65.0.5.92:8082/login';
 
     var response = await http.post(
       Uri.parse(_url),
