@@ -3,16 +3,7 @@ import 'package:lottie/lottie.dart';
 import 'package:get/get.dart';
 import 'main.dart';
 
-void main() {
-  runApp(GetMaterialApp(
-    initialRoute: '/',
-    getPages: [
-      GetPage(name: '/', page: () => Splash()),
-      GetPage(name: '/login', page: () => Login()),
-    ],
-  )
-  );
-}
+
 
 class Splash extends StatefulWidget {
   const Splash({super.key});
